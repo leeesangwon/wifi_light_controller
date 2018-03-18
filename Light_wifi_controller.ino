@@ -25,6 +25,7 @@ const int min_value = 544;
 const int max_value = 2400;
 
 int led_status = 0;
+int servo_delay = 1000;
 
 Servo servo;
 
@@ -156,6 +157,11 @@ void loop() {
 						get_http_request = 1;
 						led_status = 0;
 					}
+         else if (currentLine.startsWith("GET /D")) {
+           //Serial.println("GET LOW");
+            get_http_request = 1;
+            servo_delay = currentLine.substring(6).toInt();
+          }
 					currentLine = "";
 				}
 			}
@@ -170,9 +176,9 @@ void loop() {
     Serial.println("servo on");
     servo.write(60);
     Serial.println("on");
-    delay(700);
+    delay(servo_delay);
     servo.write(105);
-    delay(700);
+    delay(servo_delay);
     servo.detach();
     Serial.println("servo off");
 	}
@@ -181,9 +187,9 @@ void loop() {
     Serial.println("servo on");
     servo.write(120);
     Serial.println("on");
-    delay(700);
+    delay(servo_delay);
     servo.write(75);
-    delay(700);
+    delay(servo_delay);
     servo.detach();
     Serial.println("servo off");
 	}
