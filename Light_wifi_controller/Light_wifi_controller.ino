@@ -4,14 +4,14 @@
 #include <SoftwareSerial.h>
 #include <Servo.h>
 
-#define SSID      "Y3.141592"		// your wifi network SSID
-#define KEY       "2godnjsqkqh!"		// your wifi network password
-#define AUTH       "WPA2" 		// your wifi network security (NONE, WEP, WPA, WPA2)
+#define SSID      "YOUR SSID"		    // your wifi network SSID
+#define KEY       "YOUR PW"		      // your wifi network password
+#define AUTH      "YOUR SECURITY" 	// your wifi network security (NONE, WEP, WPA, WPA2)
 
 #define USE_DHCP_IP 0
 
 #if !USE_DHCP_IP
-#define MY_IP          "192.168.1.111"
+#define MY_IP          "192.168.1.111"  // ip address assigned to this device
 #define SUBNET         "255.255.255.0"
 #define GATEWAY        "192.168.1.1"
 #endif
