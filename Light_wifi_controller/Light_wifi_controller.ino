@@ -155,7 +155,7 @@ void loop() {
 					else if (currentLine.startsWith("GET /L")) {
 						//Serial.println("GET LOW");
 						get_http_request = 1;
-						led_status = 0;
+						led_status = -1;
 					}
          else if (currentLine.startsWith("GET /D")) {
            //Serial.println("GET LOW");
@@ -171,7 +171,7 @@ void loop() {
 		}
 	}
 
-	if (led_status) {
+	if (led_status == 1) {
 		servo.attach(servo_light_on, min_value, max_value);
     Serial.println("servo on");
     servo.write(60);
@@ -181,8 +181,9 @@ void loop() {
     delay(servo_delay);
     servo.detach();
     Serial.println("servo off");
+    led_status = 0;
 	}
-	else {
+	else if (led_status == -1) {
 	  servo.attach(servo_light_off, min_value, max_value);
     Serial.println("servo on");
     servo.write(120);
@@ -192,9 +193,11 @@ void loop() {
     delay(servo_delay);
     servo.detach();
     Serial.println("servo off");
+    led_status = 0;
 	}
 	
 	// close the connection
 	JSN270.sendCommand("at+nclose\r");
 	Serial.println("client disonnected");
 }
+
